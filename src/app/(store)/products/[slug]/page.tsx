@@ -13,6 +13,9 @@ type ProductPageProps = {
   params: Promise<{
     slug: string;
   }>;
+  searchParams: Promise<{
+    tab?: string;
+  }>;
 };
 
 export async function generateStaticParams() {
@@ -41,13 +44,19 @@ export async function generateMetadata({
   };
 }
 
-export default async function ProductPage({ params }: ProductPageProps) {
+export default async function ProductPage({
+  params,
+  searchParams,
+}: ProductPageProps) {
   const { slug } = await params;
+  const { tab } = await searchParams;
   const product = await getProductBySlug(slug);
 
   if (!product) {
     notFound();
   }
+
+  const activeTab = tab === "specifications" ? "specifications" : "description";
 
   return (
     <div className="page-shell">
@@ -75,6 +84,40 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <p className="stock-note">{product.stock} items in stock</p>
         </div>
       </article>
+
+      <section className="product-tabs" aria-label="Product details">
+        <div className="tab-list">
+          <Link
+            className={activeTab === "description" ? "tab active" : "tab"}
+            href={`/products/${product.slug}?tab=description`}
+            scroll={false}
+          >
+            Description
+          </Link>
+          <Link
+            className={activeTab === "specifications" ? "tab active" : "tab"}
+            href={`/products/${product.slug}?tab=specifications`}
+            scroll={false}
+          >
+            Specifications
+          </Link>
+        </div>
+
+        <div className="tab-panel">
+          {activeTab === "description" ? (
+            <p>{product.description}</p>
+          ) : (
+            <dl className="spec-list">
+              {Object.entries(product.specifications).map(([label, value]) => (
+                <div key={label}>
+                  <dt>{label}</dt>
+                  <dd>{value}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
+        </div>
+      </section>
     </div>
   );
 }
