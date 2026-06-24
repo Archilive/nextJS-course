@@ -1,0 +1,62 @@
+[
+  {
+    "id": "prod_mug",
+    "slug": "ceramic-travel-mug",
+    "name": "Ceramic travel mug",
+    "category": "Kitchen",
+    "price": 24.9,
+    "image": "/products/ceramic-travel-mug.svg",
+    "description": "A double-wall ceramic mug for warm coffee, slow mornings, and focused coding sessions.",
+    "stock": 18,
+    "specifications": {
+      "Capacity": "350 ml",
+      "Material": "Ceramic",
+      "Care": "Dishwasher safe"
+    }
+  },
+  {
+    "id": "prod_lamp",
+    "slug": "minimal-desk-lamp",
+    "name": "Minimal desk lamp",
+    "category": "Office",
+    "price": 69,
+    "image": "/products/minimal-desk-lamp.svg",
+    "description": "A compact LED lamp with a warm dimmable light for a clean desk setup.",
+    "stock": 9,
+    "specifications": {
+      "Light": "Warm LED",
+      "Power": "USB-C",
+      "Height": "42 cm"
+    }
+  },
+  {
+    "id": "prod_tote",
+    "slug": "linen-market-tote",
+    "name": "Linen market tote",
+    "category": "Bags",
+    "price": 32,
+    "image": "/products/linen-market-tote.svg",
+    "description": "A sturdy everyday tote with inside pocket and enough room for errands or a laptop.",
+    "stock": 26,
+    "specifications": {
+      "Material": "Linen blend",
+      "Volume": "18 L",
+      "Pocket": "Inside zip pocket"
+    }
+  },
+  {
+    "id": "prod_bottle",
+    "slug": "steel-water-bottle",
+    "name": "Steel water bottle",
+    "category": "Outdoor",
+    "price": 39.5,
+    "image": "/products/steel-water-bottle.svg",
+    "description": "A vacuum insulated bottle that keeps drinks cold through long workshop days.",
+    "stock": 14,
+    "specifications": {
+      "Capacity": "600 ml",
+      "Material": "Stainless steel",
+      "Insulation": "24h cold"
+    }
+  }
+]
