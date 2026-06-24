@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { formatPrice } from "@/features/catalog/format";
 import {
-  formatPrice,
   getProductBySlug,
   getProducts,
 } from "@/features/catalog/queries";
+import { AddToCartButton } from "@/features/cart/add-to-cart-button";
 
 type ProductPageProps = {
   params: Promise<{
@@ -70,9 +71,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <h1>{product.name}</h1>
           <p className="product-description">{product.description}</p>
           <strong className="product-price">{formatPrice(product.price)}</strong>
-          <button className="primary-button" type="button">
-            Add to cart
-          </button>
+          <AddToCartButton product={product} />
           <p className="stock-note">{product.stock} items in stock</p>
         </div>
       </article>

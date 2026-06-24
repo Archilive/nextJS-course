@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CartSummary } from "@/features/cart/cart-summary";
 
 export default function StoreLayout({
   children,
@@ -15,6 +16,7 @@ export default function StoreLayout({
           <Link href="/">Products</Link>
           <Link href="/admin/products">Admin</Link>
         </nav>
+        <CartSummary />
       </header>
       <main className="site-main">{children}</main>
       <footer className="site-footer">

@@ -1,4 +1,5 @@
-import { formatPrice, getProducts } from "@/features/catalog/queries";
+import { formatPrice } from "@/features/catalog/format";
+import { getProducts } from "@/features/catalog/queries";
 
 export default async function AdminProductsPage() {
   const products = await getProducts();

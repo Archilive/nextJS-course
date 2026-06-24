@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@fontsource/dancing-script':
+        specifier: ^5.2.8
+        version: 5.2.8
       '@prisma/adapter-better-sqlite3':
         specifier: ^7.8.0
         version: 7.8.0
@@ -343,6 +346,9 @@ packages:
   '@eslint/plugin-kit@0.4.1':
     resolution: {integrity: sha512-43/qtrDUokr7LJqoF2c3+RInu/t4zfrpYdoSDfYyhg52rwLV6TnOvdG4fXm7IkSB3wErkcmJS9iEhjVtOSEjjA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@fontsource/dancing-script@5.2.8':
+    resolution: {integrity: sha512-zHVVgIQ5/rAIM0VVp1QMsqvJm9INHO5/C82E9rHT6NlabjaPTFYn8wl9lT4vPWizfB0TublGQM1999kfdA+XFA==}
 
   '@hono/node-server@1.19.11':
     resolution: {integrity: sha512-dr8/3zEaB+p0D2n/IUrlPF1HZm586qgJNXK1a9fhg/PzdtkK7Ksd5l312tJX2yBuALqDYBlG20QEbayqPyxn+g==}
@@ -2722,6 +2728,8 @@ snapshots:
     dependencies:
       '@eslint/core': 0.17.0
       levn: 0.4.1
+
+  '@fontsource/dancing-script@5.2.8': {}
 
   '@hono/node-server@1.19.11(hono@4.12.27)':
     dependencies:

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { formatPrice, getProducts } from "@/features/catalog/queries";
+import { formatPrice } from "@/features/catalog/format";
+import { getProducts } from "@/features/catalog/queries";
 
 export default async function HomePage() {
   const products = await getProducts();
