@@ -211,6 +211,14 @@ img {
   letter-spacing: 0;
 }
 
+.section-heading.compact {
+  margin: 0 0 18px;
+}
+
+.section-heading.compact h2 {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
 .section-heading span {
   color: var(--muted);
   font-weight: 600;
@@ -220,6 +228,10 @@ img {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 18px;
+}
+
+.compact-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
 .product-card {
@@ -414,6 +426,65 @@ img {
 
 .spec-list dd {
   color: var(--muted);
+}
+
+.related-section {
+  margin-top: 36px;
+}
+
+.muted-text {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.skeleton-block {
+  opacity: 0.75;
+}
+
+.skeleton-media,
+.skeleton-content span {
+  display: block;
+  border-radius: var(--radius);
+  background: linear-gradient(
+    90deg,
+    var(--surface-muted),
+    #f7f2ea,
+    var(--surface-muted)
+  );
+  background-size: 200% 100%;
+  animation: skeleton 1100ms ease infinite;
+}
+
+.skeleton-media {
+  aspect-ratio: 1.22;
+}
+
+.skeleton-content {
+  display: grid;
+  gap: 14px;
+}
+
+.skeleton-content span {
+  min-height: 20px;
+}
+
+.skeleton-content span:nth-child(2) {
+  min-height: 64px;
+}
+
+.skeleton-content span:nth-child(3) {
+  width: 60%;
+}
+
+.skeleton-content span:nth-child(4) {
+  width: 44%;
+  min-height: 48px;
+}
+
+@keyframes skeleton {
+  to {
+    background-position-x: -200%;
+  }
 }
 
 .loader-panel,

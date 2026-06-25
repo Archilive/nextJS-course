@@ -60,3 +60,49 @@ export async function getProductBySlug(slug: string) {
 
   return product ? mapProduct(product) : null;
 }
+
+export async function getSimilarProducts(slug: string) {
+  const product = await prisma.product.findUnique({
+    where: {
+      slug,
+    },
+    select: {
+      category: true,
+    },
+  });
+
+  if (!product) {
+    return [];
+  }
+
+  const sameCategoryProducts = await prisma.product.findMany({
+    where: {
+      category: product.category,
+      slug: {
+        not: slug,
+      },
+    },
+    orderBy: {
+      name: "asc",
+    },
+    take: 3,
+  });
+
+  if (sameCategoryProducts.length > 0) {
+    return sameCategoryProducts.map(mapProduct);
+  }
+
+  const products = await prisma.product.findMany({
+    where: {
+      slug: {
+        not: slug,
+      },
+    },
+    orderBy: {
+      name: "asc",
+    },
+    take: 3,
+  });
+
+  return products.map(mapProduct);
+}

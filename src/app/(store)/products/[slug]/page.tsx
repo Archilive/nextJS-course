@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { formatPrice } from "@/features/catalog/format";
 import {
   getProductBySlug,
@@ -9,6 +10,7 @@ import {
 } from "@/features/catalog/queries";
 import { AddToCartButton } from "@/features/cart/add-to-cart-button";
 import { ProductTabs } from "@/features/catalog/product-tabs";
+import { SimilarProducts } from "@/features/catalog/similar-products";
 
 export const revalidate = 60;
 
@@ -46,6 +48,17 @@ export async function generateMetadata({
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const { slug } = await params;
+
+  return (
+    <div className="page-shell">
+      <Suspense fallback={<ProductDetailSkeleton />}>
+        <ProductContent slug={slug} />
+      </Suspense>
+    </div>
+  );
+}
+
+async function ProductContent({ slug }: { slug: string }) {
   const product = await getProductBySlug(slug);
 
   if (!product) {
@@ -53,7 +66,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   }
 
   return (
-    <div className="page-shell">
+    <>
       <Link className="back-link" href="/">
         Retour aux produits
       </Link>
@@ -80,6 +93,41 @@ export default async function ProductPage({ params }: ProductPageProps) {
       </article>
 
       <ProductTabs product={product} />
+
+      <Suspense fallback={<RelatedSkeleton />}>
+        <SimilarProducts slug={product.slug} />
+      </Suspense>
+    </>
+  );
+}
+
+function ProductDetailSkeleton() {
+  return (
+    <div className="product-detail skeleton-block">
+      <div className="skeleton-media" />
+      <div className="skeleton-content">
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
     </div>
+  );
+}
+
+function RelatedSkeleton() {
+  return (
+    <section className="related-section">
+      <div className="section-heading compact">
+        <div>
+          <p className="eyebrow">Suggestions</p>
+          <h2>Produits similaires</h2>
+        </div>
+      </div>
+      <div className="loader-panel" role="status">
+        <span className="loader" />
+        <p>Chargement des produits similaires...</p>
+      </div>
+    </section>
   );
 }
