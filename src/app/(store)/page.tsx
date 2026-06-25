@@ -30,7 +30,7 @@ export default async function HomePage() {
       </section>
 
       <section className="product-grid">
-        {products.map((product, index) => (
+        {products.map((product) => (
           <article className="product-card" key={product.id}>
             <Link href={`/products/${product.slug}`} className="product-link">
               <Image
@@ -39,7 +39,7 @@ export default async function HomePage() {
                 alt={product.name}
                 width={620}
                 height={480}
-                priority={index === 0}
+                priority
               />
               <div className="product-card-body">
                 <div>
