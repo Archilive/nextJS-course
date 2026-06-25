@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { CartProvider } from "@/features/cart/cart-context";
 import "./globals.css";
 
 const dancingScript = localFont({
@@ -21,8 +20,8 @@ const dancingScript = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "My Supa Store",
-  description: "A simple ecommerce workshop built with Next.js.",
+  title: "Ma Supa Boutique",
+  description: "Un atelier e-commerce simple construit avec Next.js.",
 };
 
 export default function RootLayout({
@@ -32,9 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className={dancingScript.variable}>
-      <body>
-        <CartProvider>{children}</CartProvider>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

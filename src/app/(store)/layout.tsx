@@ -10,17 +10,17 @@ export default function StoreLayout({
     <>
       <header className="site-header">
         <Link className="brand" href="/">
-          My Supa Store
+          Ma Supa Boutique
         </Link>
         <nav className="main-nav" aria-label="Navigation principale">
-          <Link href="/">Products</Link>
+          <Link href="/">Produits</Link>
           <Link href="/admin/products">Admin</Link>
         </nav>
         <CartSummary />
       </header>
       <main className="site-main">{children}</main>
       <footer className="site-footer">
-        <span>Next.js workshop - App Router, RSC and route groups.</span>
+        <span>Atelier Next.js - App Router, RSC et groupes de routes.</span>
       </footer>
     </>
   );

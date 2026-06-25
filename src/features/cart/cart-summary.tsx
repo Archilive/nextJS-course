@@ -1,14 +1,21 @@
-"use client";
-
 import { formatPrice } from "@/features/catalog/format";
-import { useCart } from "./cart-context";
+import { prisma } from "@/lib/prisma";
 
-export function CartSummary() {
-  const { totalPrice, totalQuantity } = useCart();
+export async function CartSummary() {
+  const cartItems = await prisma.cartItem.findMany({
+    include: {
+      product: true,
+    },
+  });
+  const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + item.product.price * item.quantity,
+    0,
+  );
 
   return (
-    <div className="cart-summary" aria-label="Cart summary">
-      <span>Cart</span>
+    <div className="cart-summary" aria-label="Résumé du panier">
+      <span>Panier</span>
       <strong>{totalQuantity}</strong>
       <span>{formatPrice(totalPrice)}</span>
     </div>
