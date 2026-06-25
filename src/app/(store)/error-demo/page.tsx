@@ -1,5 +1,7 @@
-export const dynamic = "force-dynamic";
+import { connection } from "next/server";
 
-export default function ErrorDemoPage() {
+export default async function ErrorDemoPage() {
+  await connection();
+
   throw new Error("Intentional error demo");
 }

@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { cacheLife } from "next/cache";
+import { Suspense } from "react";
 import { CartSummary } from "@/features/cart/cart-summary";
 
 export default function StoreLayout({
@@ -16,12 +18,33 @@ export default function StoreLayout({
           <Link href="/">Produits</Link>
           <Link href="/admin/products">Admin</Link>
         </nav>
-        <CartSummary />
+        <Suspense fallback={<CartSummaryFallback />}>
+          <CartSummary />
+        </Suspense>
       </header>
       <main className="site-main">{children}</main>
-      <footer className="site-footer">
-        <span>Atelier Next.js - App Router, RSC et groupes de routes.</span>
-      </footer>
+      <StoreFooter />
     </>
+  );
+}
+
+function CartSummaryFallback() {
+  return (
+    <div className="cart-summary" aria-label="Résumé du panier">
+      <span>Panier</span>
+      <strong>0</strong>
+      <span>0,00 €</span>
+    </div>
+  );
+}
+
+async function StoreFooter() {
+  "use cache";
+  cacheLife("max");
+
+  return (
+    <footer className="site-footer">
+      <span>Atelier Next.js - App Router, RSC et groupes de routes.</span>
+    </footer>
   );
 }

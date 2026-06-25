@@ -5,8 +5,6 @@ import { notFound } from "next/navigation";
 import { formatPrice } from "@/features/catalog/format";
 import { getSponsoredProductByHandle } from "@/features/sponsored/queries";
 
-export const revalidate = 3600;
-
 type SponsoredProductPageProps = {
   params: Promise<{
     handle: string;

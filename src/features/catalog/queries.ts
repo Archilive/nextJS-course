@@ -1,3 +1,5 @@
+import { cacheLife } from "next/cache";
+import { connection } from "next/server";
 import { prisma } from "@/lib/prisma";
 import type { Product } from "./types";
 
@@ -42,6 +44,13 @@ function mapProduct(product: ProductRecord): Product {
 }
 
 export async function getProducts() {
+  "use cache";
+  cacheLife({
+    stale: 60,
+    revalidate: 60,
+    expire: 3600,
+  });
+
   const products = await prisma.product.findMany({
     orderBy: {
       name: "asc",
@@ -52,6 +61,13 @@ export async function getProducts() {
 }
 
 export async function getProductBySlug(slug: string) {
+  "use cache";
+  cacheLife({
+    stale: 60,
+    revalidate: 60,
+    expire: 3600,
+  });
+
   const product = await prisma.product.findUnique({
     where: {
       slug,
@@ -62,6 +78,8 @@ export async function getProductBySlug(slug: string) {
 }
 
 export async function getSimilarProducts(slug: string) {
+  await connection();
+
   const product = await prisma.product.findUnique({
     where: {
       slug,

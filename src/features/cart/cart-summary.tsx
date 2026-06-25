@@ -1,7 +1,10 @@
+import { connection } from "next/server";
 import { formatPrice } from "@/features/catalog/format";
 import { prisma } from "@/lib/prisma";
 
 export async function CartSummary() {
+  await connection();
+
   const cartItems = await prisma.cartItem.findMany({
     include: {
       product: true,

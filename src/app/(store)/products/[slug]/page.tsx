@@ -13,8 +13,6 @@ import { ProductTabs } from "@/features/catalog/product-tabs";
 import { SimilarProducts } from "@/features/catalog/similar-products";
 import { SponsoredProducts } from "@/features/sponsored/sponsored-products";
 
-export const revalidate = 60;
-
 type ProductPageProps = {
   params: Promise<{
     slug: string;
