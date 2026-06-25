@@ -11,6 +11,7 @@ import {
 import { AddToCartButton } from "@/features/cart/add-to-cart-button";
 import { ProductTabs } from "@/features/catalog/product-tabs";
 import { SimilarProducts } from "@/features/catalog/similar-products";
+import { SponsoredProducts } from "@/features/sponsored/sponsored-products";
 
 export const revalidate = 60;
 
@@ -97,6 +98,10 @@ async function ProductContent({ slug }: { slug: string }) {
       <Suspense fallback={<RelatedSkeleton />}>
         <SimilarProducts slug={product.slug} />
       </Suspense>
+
+      <Suspense fallback={<SponsoredSkeleton />}>
+        <SponsoredProducts />
+      </Suspense>
     </>
   );
 }
@@ -127,6 +132,23 @@ function RelatedSkeleton() {
       <div className="loader-panel" role="status">
         <span className="loader" />
         <p>Chargement des produits similaires...</p>
+      </div>
+    </section>
+  );
+}
+
+function SponsoredSkeleton() {
+  return (
+    <section className="sponsored-section">
+      <div className="section-heading">
+        <div>
+          <p className="eyebrow">GraphQL</p>
+          <h2>Produits sponsorisés</h2>
+        </div>
+      </div>
+      <div className="loader-panel" role="status">
+        <span className="loader" />
+        <p>Chargement des produits sponsorisés...</p>
       </div>
     </section>
   );

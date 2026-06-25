@@ -364,6 +364,26 @@ img {
   background: var(--accent-strong);
 }
 
+.secondary-button {
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0 16px;
+  color: var(--accent-strong);
+  background: var(--surface);
+  font-weight: 800;
+}
+
+.secondary-button:hover:not(:disabled) {
+  border-color: var(--accent-strong);
+  background: var(--surface-muted);
+}
+
+.secondary-button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
 .stock-note {
   margin-top: 12px;
   color: var(--muted);
@@ -430,6 +450,18 @@ img {
 
 .related-section {
   margin-top: 36px;
+}
+
+.sponsored-section {
+  margin-top: 48px;
+}
+
+.sponsored-card {
+  border-color: rgba(46, 111, 149, 0.26);
+}
+
+.sponsored-detail .product-detail-media {
+  border-color: rgba(46, 111, 149, 0.28);
 }
 
 .muted-text {

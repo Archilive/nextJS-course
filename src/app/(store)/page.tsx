@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Suspense } from "react";
 import { formatPrice } from "@/features/catalog/format";
 import { getProducts } from "@/features/catalog/queries";
+import { SponsoredProducts } from "@/features/sponsored/sponsored-products";
 
 export default async function HomePage() {
   const products = await getProducts();
@@ -10,21 +12,21 @@ export default async function HomePage() {
     <div className="page-shell">
       <section className="hero">
         <div>
-          <p className="eyebrow">Simple ecommerce workshop</p>
-          <h1>Useful products for focused days.</h1>
+          <p className="eyebrow">Atelier e-commerce simple</p>
+          <h1>Des produits utiles pour des journées efficaces.</h1>
           <p>
-            A small product catalog rendered with Server Components and local
-            mock data.
+            Un petit catalogue rendu avec des Server Components et des données
+            locales de test.
           </p>
         </div>
       </section>
 
       <section className="section-heading" aria-labelledby="products-title">
         <div>
-          <p className="eyebrow">Catalog</p>
-          <h2 id="products-title">Products</h2>
+          <p className="eyebrow">Catalogue</p>
+          <h2 id="products-title">Produits</h2>
         </div>
-        <span>{products.length} products</span>
+        <span>{products.length} produits</span>
       </section>
 
       <section className="product-grid">
@@ -49,6 +51,27 @@ export default async function HomePage() {
           </article>
         ))}
       </section>
+
+      <Suspense fallback={<SponsoredProductsSkeleton />}>
+        <SponsoredProducts />
+      </Suspense>
     </div>
+  );
+}
+
+function SponsoredProductsSkeleton() {
+  return (
+    <section className="sponsored-section">
+      <div className="section-heading">
+        <div>
+          <p className="eyebrow">GraphQL</p>
+          <h2>Produits sponsorisés</h2>
+        </div>
+      </div>
+      <div className="loader-panel" role="status">
+        <span className="loader" />
+        <p>Chargement des produits sponsorisés...</p>
+      </div>
+    </section>
   );
 }
