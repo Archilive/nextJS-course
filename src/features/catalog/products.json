@@ -2,61 +2,61 @@
   {
     "id": "prod_mug",
     "slug": "ceramic-travel-mug",
-    "name": "Ceramic travel mug",
-    "category": "Kitchen",
+    "name": "Mug de voyage en céramique",
+    "category": "Cuisine",
     "price": 24.9,
     "image": "/products/ceramic-travel-mug.svg",
-    "description": "A double-wall ceramic mug for warm coffee, slow mornings, and focused coding sessions.",
+    "description": "Un mug en céramique double paroi pour le café chaud, les matins calmes et les sessions de code concentrées.",
     "stock": 18,
     "specifications": {
-      "Capacity": "350 ml",
-      "Material": "Ceramic",
-      "Care": "Dishwasher safe"
+      "Capacité": "350 ml",
+      "Matière": "Céramique",
+      "Entretien": "Compatible lave-vaisselle"
     }
   },
   {
     "id": "prod_lamp",
     "slug": "minimal-desk-lamp",
-    "name": "Minimal desk lamp",
-    "category": "Office",
+    "name": "Lampe de bureau minimaliste",
+    "category": "Bureau",
     "price": 69,
     "image": "/products/minimal-desk-lamp.svg",
-    "description": "A compact LED lamp with a warm dimmable light for a clean desk setup.",
+    "description": "Une lampe LED compacte avec une lumière chaude réglable pour un bureau net.",
     "stock": 9,
     "specifications": {
-      "Light": "Warm LED",
-      "Power": "USB-C",
-      "Height": "42 cm"
+      "Lumière": "LED chaude",
+      "Alimentation": "USB-C",
+      "Hauteur": "42 cm"
     }
   },
   {
     "id": "prod_tote",
     "slug": "linen-market-tote",
-    "name": "Linen market tote",
-    "category": "Bags",
+    "name": "Cabas de marché en lin",
+    "category": "Sacs",
     "price": 32,
     "image": "/products/linen-market-tote.svg",
-    "description": "A sturdy everyday tote with inside pocket and enough room for errands or a laptop.",
+    "description": "Un cabas robuste avec une poche intérieure et assez de place pour les courses ou un ordinateur portable.",
     "stock": 26,
     "specifications": {
-      "Material": "Linen blend",
+      "Matière": "Mélange de lin",
       "Volume": "18 L",
-      "Pocket": "Inside zip pocket"
+      "Poche": "Poche zippée intérieure"
     }
   },
   {
     "id": "prod_bottle",
     "slug": "steel-water-bottle",
-    "name": "Steel water bottle",
-    "category": "Outdoor",
+    "name": "Gourde en acier",
+    "category": "Extérieur",
     "price": 39.5,
     "image": "/products/steel-water-bottle.svg",
-    "description": "A vacuum insulated bottle that keeps drinks cold through long workshop days.",
+    "description": "Une gourde isotherme qui garde les boissons fraîches pendant les longues journées d’atelier.",
     "stock": 14,
     "specifications": {
-      "Capacity": "600 ml",
-      "Material": "Stainless steel",
-      "Insulation": "24h cold"
+      "Capacité": "600 ml",
+      "Matière": "Acier inoxydable",
+      "Isolation": "24 h au froid"
     }
   }
 ]

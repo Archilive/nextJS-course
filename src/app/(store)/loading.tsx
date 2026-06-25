@@ -3,7 +3,7 @@ export default function StoreLoading() {
     <div className="page-shell">
       <div className="loader-panel" role="status">
         <span className="loader" />
-        <p>Loading products...</p>
+        <p>Chargement des produits...</p>
       </div>
     </div>
   );

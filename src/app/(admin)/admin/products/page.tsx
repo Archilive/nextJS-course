@@ -8,19 +8,19 @@ export default async function AdminProductsPage() {
     <div>
       <div className="admin-heading">
         <div>
-          <p className="eyebrow">Back office</p>
-          <h1>Products</h1>
+          <p className="eyebrow">Administration</p>
+          <h1>Produits</h1>
         </div>
-        <span>{products.length} products</span>
+        <span>{products.length} produits</span>
       </div>
 
       <div className="admin-table-wrapper">
         <table className="admin-table">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Category</th>
-              <th>Price</th>
+              <th>Nom</th>
+              <th>Catégorie</th>
+              <th>Prix</th>
               <th>Stock</th>
               <th>Slug</th>
             </tr>

@@ -9,11 +9,11 @@ export default function AdminLayout({
     <main className="admin-shell">
       <aside className="admin-sidebar">
         <Link className="brand" href="/admin/products">
-          Store Admin
+          Admin Boutique
         </Link>
         <nav className="admin-nav" aria-label="Navigation admin">
-          <Link href="/admin/products">Products</Link>
-          <Link href="/">Storefront</Link>
+          <Link href="/admin/products">Produits</Link>
+          <Link href="/">Boutique</Link>
         </nav>
       </aside>
       <section className="admin-content">{children}</section>

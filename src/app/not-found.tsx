@@ -5,10 +5,10 @@ export default function NotFound() {
     <main className="page-shell">
       <div className="feedback-panel">
         <p className="eyebrow">404</p>
-        <h1>Page not found.</h1>
-        <p>The page does not exist in this store.</p>
+        <h1>Page introuvable.</h1>
+        <p>Cette page n’existe pas dans la boutique.</p>
         <Link className="primary-link" href="/">
-          Back to products
+          Retour aux produits
         </Link>
       </div>
     </main>
