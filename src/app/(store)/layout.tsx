@@ -16,6 +16,7 @@ export default function StoreLayout({
         </Link>
         <nav className="main-nav" aria-label="Navigation principale">
           <Link href="/">Produits</Link>
+          <Link href="/performance">Performance</Link>
           <Link href="/admin/products">Admin</Link>
         </nav>
         <Suspense fallback={<CartSummaryFallback />}>
