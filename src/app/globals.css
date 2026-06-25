@@ -257,6 +257,7 @@ img {
 
 .product-card-image {
   width: 100%;
+  height: auto;
   aspect-ratio: 1.22;
   object-fit: cover;
   background: var(--surface-muted);
