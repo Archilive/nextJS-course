@@ -1,7 +1,9 @@
-import { cacheLife } from "next/cache";
+import { cacheLife, unstable_cache } from "next/cache";
 import { connection } from "next/server";
 import { prisma } from "@/lib/prisma";
 import type { Product } from "./types";
+
+export const PRODUCTS_CACHE_TAG = "products";
 
 type ProductRecord = {
   id: number;
@@ -43,14 +45,7 @@ function mapProduct(product: ProductRecord): Product {
   };
 }
 
-export async function getProducts() {
-  "use cache";
-  cacheLife({
-    stale: 60,
-    revalidate: 60,
-    expire: 3600,
-  });
-
+async function findProducts() {
   const products = await prisma.product.findMany({
     orderBy: {
       name: "asc",
@@ -58,6 +53,15 @@ export async function getProducts() {
   });
 
   return products.map(mapProduct);
+}
+
+const getCachedProducts = unstable_cache(findProducts, ["products"], {
+  revalidate: 3600,
+  tags: [PRODUCTS_CACHE_TAG],
+});
+
+export async function getProducts() {
+  return getCachedProducts();
 }
 
 export async function getProductBySlug(slug: string) {

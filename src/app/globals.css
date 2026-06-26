@@ -719,6 +719,12 @@ img {
   line-height: 1.5;
 }
 
+.form-success {
+  color: var(--accent-strong);
+  font-weight: 800;
+  line-height: 1.5;
+}
+
 .auth-switch {
   color: var(--muted);
   line-height: 1.6;
@@ -809,6 +815,10 @@ img {
   margin-bottom: 24px;
 }
 
+.admin-heading.compact {
+  margin: 36px 0 18px;
+}
+
 .admin-heading h1 {
   margin-top: 6px;
   font-size: clamp(2rem, 4vw, 3.5rem);
@@ -851,6 +861,74 @@ img {
 
 .admin-table tr:last-child td {
   border-bottom: 0;
+}
+
+.admin-edit-list {
+  margin-top: 36px;
+}
+
+.product-edit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.product-edit-card {
+  border: 1px solid #d9e1ea;
+  border-radius: var(--radius);
+  padding: 18px;
+  background: #ffffff;
+  box-shadow: 0 12px 36px rgba(31, 41, 51, 0.08);
+}
+
+.product-edit-card h3 {
+  font-size: 1.1rem;
+}
+
+.product-edit-card > p {
+  margin-top: 4px;
+  color: var(--accent-strong);
+  font-weight: 800;
+}
+
+.product-edit-form {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.product-edit-form label {
+  display: grid;
+  gap: 6px;
+  color: var(--foreground);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.product-edit-form input,
+.product-edit-form textarea {
+  width: 100%;
+  border: 1px solid #d9e1ea;
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  color: var(--foreground);
+  background: #ffffff;
+}
+
+.product-edit-form textarea {
+  resize: vertical;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 @media (max-width: 720px) {
@@ -922,5 +1000,9 @@ img {
     align-items: flex-start;
     flex-direction: column;
     gap: 8px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
   }
 }
