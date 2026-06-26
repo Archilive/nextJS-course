@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { formatPrice } from "@/features/catalog/format";
@@ -59,6 +60,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
 async function ProductContent({ slug }: { slug: string }) {
   const product = await getProductBySlug(slug);
+  const cookieStore = await cookies();
+  const prefetchMode =
+    cookieStore.get("ab_prefetch")?.value === "B" ? "hover" : "auto";
 
   if (!product) {
     notFound();
@@ -94,11 +98,11 @@ async function ProductContent({ slug }: { slug: string }) {
       <ProductTabs product={product} />
 
       <Suspense fallback={<RelatedSkeleton />}>
-        <SimilarProducts slug={product.slug} />
+        <SimilarProducts prefetchMode={prefetchMode} slug={product.slug} />
       </Suspense>
 
       <Suspense fallback={<SponsoredSkeleton />}>
-        <SponsoredProducts />
+        <SponsoredProducts prefetchMode={prefetchMode} />
       </Suspense>
     </>
   );

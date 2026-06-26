@@ -1,5 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { ReactNode } from "react";
+import {
+  PrefetchLink,
+  type PrefetchMode,
+} from "@/features/navigation/prefetch-link";
 import { getSimilarProducts } from "./queries";
 import { formatPrice } from "./format";
 
@@ -7,7 +12,13 @@ function wait(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-export async function SimilarProducts({ slug }: { slug: string }) {
+export async function SimilarProducts({
+  prefetchMode = "auto",
+  slug,
+}: {
+  prefetchMode?: PrefetchMode;
+  slug: string;
+}) {
   await wait(900);
   const products = await getSimilarProducts(slug);
 
@@ -37,7 +48,7 @@ export async function SimilarProducts({ slug }: { slug: string }) {
       <div className="product-grid compact-grid">
         {products.map((product) => (
           <article className="product-card" key={product.id}>
-            <Link href={`/products/${product.slug}`} className="product-link">
+            <ProductLink href={`/products/${product.slug}`} mode={prefetchMode}>
               <Image
                 className="product-card-image"
                 src={product.image}
@@ -52,10 +63,34 @@ export async function SimilarProducts({ slug }: { slug: string }) {
                 </div>
                 <strong>{formatPrice(product.price)}</strong>
               </div>
-            </Link>
+            </ProductLink>
           </article>
         ))}
       </div>
     </section>
+  );
+}
+
+function ProductLink({
+  children,
+  href,
+  mode,
+}: {
+  children: ReactNode;
+  href: string;
+  mode: PrefetchMode;
+}) {
+  if (mode === "hover") {
+    return (
+      <PrefetchLink className="product-link" href={href}>
+        {children}
+      </PrefetchLink>
+    );
+  }
+
+  return (
+    <Link className="product-link" href={href}>
+      {children}
+    </Link>
   );
 }

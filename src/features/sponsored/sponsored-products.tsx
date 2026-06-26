@@ -1,10 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { formatPrice } from "@/features/catalog/format";
+import {
+  PrefetchLink,
+  type PrefetchMode,
+} from "@/features/navigation/prefetch-link";
 import { getSponsoredProducts } from "./queries";
 import { RevalidateSponsoredButton } from "./revalidate-sponsored-button";
 
-export async function SponsoredProducts() {
+export async function SponsoredProducts({
+  prefetchMode = "auto",
+}: {
+  prefetchMode?: PrefetchMode;
+}) {
   const products = await getSponsoredProducts(6);
 
   return (
@@ -20,7 +29,10 @@ export async function SponsoredProducts() {
       <div className="product-grid">
         {products.map((product) => (
           <article className="product-card sponsored-card" key={product.id}>
-            <Link href={`/sponsored/${product.handle}`} className="product-link">
+            <ProductLink
+              href={`/sponsored/${product.handle}`}
+              mode={prefetchMode}
+            >
               <Image
                 className="product-card-image"
                 src={product.image}
@@ -35,10 +47,34 @@ export async function SponsoredProducts() {
                 </div>
                 <strong>{formatPrice(product.price)}</strong>
               </div>
-            </Link>
+            </ProductLink>
           </article>
         ))}
       </div>
     </section>
+  );
+}
+
+function ProductLink({
+  children,
+  href,
+  mode,
+}: {
+  children: ReactNode;
+  href: string;
+  mode: PrefetchMode;
+}) {
+  if (mode === "hover") {
+    return (
+      <PrefetchLink className="product-link" href={href}>
+        {children}
+      </PrefetchLink>
+    );
+  }
+
+  return (
+    <Link className="product-link" href={href}>
+      {children}
+    </Link>
   );
 }
