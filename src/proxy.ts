@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { auth } from "./auth";
+import { auth } from "../auth";
 
 const AB_COOKIE = "ab_prefetch";
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 30;
@@ -16,7 +16,7 @@ function setVariantCookie(response: NextResponse, variant: "A" | "B") {
   });
 }
 
-export default auth((request) => {
+const handler = auth((request) => {
   const { pathname } = request.nextUrl;
   const forcedVariant = readVariant(request.nextUrl.searchParams.get(AB_COOKIE));
   const currentVariant = readVariant(request.cookies.get(AB_COOKIE)?.value);
@@ -37,6 +37,9 @@ export default auth((request) => {
 
   return response;
 });
+
+export { handler as proxy };
+export default handler;
 
 export const config = {
   matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
