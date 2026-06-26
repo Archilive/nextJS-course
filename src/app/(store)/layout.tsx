@@ -2,6 +2,7 @@ import Link from "next/link";
 import { cacheLife } from "next/cache";
 import { Suspense } from "react";
 import { CartSummary } from "@/features/cart/cart-summary";
+import { HeaderAuth } from "@/features/auth/header-auth";
 
 export default function StoreLayout({
   children,
@@ -14,17 +15,32 @@ export default function StoreLayout({
         <Link className="brand" href="/">
           Ma Supa Boutique
         </Link>
-        <nav className="main-nav" aria-label="Navigation principale">
-          <Link href="/">Produits</Link>
-          <Link href="/performance">Performance</Link>
-          <Link href="/admin/products">Admin</Link>
-        </nav>
+        <Suspense fallback={<HeaderAuthFallback />}>
+          <HeaderAuth />
+        </Suspense>
         <Suspense fallback={<CartSummaryFallback />}>
           <CartSummary />
         </Suspense>
       </header>
       <main className="site-main">{children}</main>
       <StoreFooter />
+    </>
+  );
+}
+
+function HeaderAuthFallback() {
+  return (
+    <>
+      <nav className="main-nav" aria-label="Navigation principale">
+        <Link href="/">Produits</Link>
+        <Link href="/performance">Performance</Link>
+        <Link href="/compte">Compte</Link>
+      </nav>
+      <div className="auth-controls">
+        <Link className="secondary-link" href="/login">
+          Connexion
+        </Link>
+      </div>
     </>
   );
 }
