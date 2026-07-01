@@ -1,0 +1,28 @@
+{
+  "nav": {
+    "products": "Products",
+    "performance": "Performance",
+    "production": "Production",
+    "account": "Account",
+    "admin": "Admin",
+    "login": "Log in",
+    "register": "Sign up",
+    "logout": "Log out"
+  },
+  "home": {
+    "eyebrow": "Simple e-commerce workshop",
+    "title": "Useful products for efficient days.",
+    "description": "A small catalog rendered with Server Components and local test data.",
+    "catalog": "Catalog",
+    "products": "Products",
+    "productsCount": "products"
+  },
+  "footer": {
+    "text": "Next.js workshop - production, SEO and observability."
+  },
+  "language": {
+    "label": "Language",
+    "fr": "FR",
+    "en": "EN"
+  }
+}

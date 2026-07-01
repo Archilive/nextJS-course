@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { cacheLife } from "next/cache";
 import { Suspense } from "react";
 import { CartSummary } from "@/features/cart/cart-summary";
 import { HeaderAuth } from "@/features/auth/header-auth";
+import { getDictionary, getRequestLocale } from "@/features/i18n/server";
 
 export default function StoreLayout({
   children,
@@ -23,7 +23,9 @@ export default function StoreLayout({
         </Suspense>
       </header>
       <main className="site-main">{children}</main>
-      <StoreFooter />
+      <Suspense fallback={<FooterFallback />}>
+        <StoreFooter />
+      </Suspense>
     </>
   );
 }
@@ -57,9 +59,17 @@ function CartSummaryFallback() {
 }
 
 async function StoreFooter() {
-  "use cache";
-  cacheLife("max");
+  const locale = await getRequestLocale();
+  const dictionary = getDictionary(locale);
 
+  return (
+    <footer className="site-footer">
+      <span>{dictionary.footer.text}</span>
+    </footer>
+  );
+}
+
+function FooterFallback() {
   return (
     <footer className="site-footer">
       <span>Atelier Next.js - production, SEO et observabilité.</span>

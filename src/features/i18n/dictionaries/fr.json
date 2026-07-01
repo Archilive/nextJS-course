@@ -1,0 +1,28 @@
+{
+  "nav": {
+    "products": "Produits",
+    "performance": "Performance",
+    "production": "Production",
+    "account": "Compte",
+    "admin": "Admin",
+    "login": "Connexion",
+    "register": "Inscription",
+    "logout": "Déconnexion"
+  },
+  "home": {
+    "eyebrow": "Atelier e-commerce simple",
+    "title": "Des produits utiles pour des journées efficaces.",
+    "description": "Un petit catalogue rendu avec des Server Components et des données locales de test.",
+    "catalog": "Catalogue",
+    "products": "Produits",
+    "productsCount": "produits"
+  },
+  "footer": {
+    "text": "Atelier Next.js - production, SEO et observabilité."
+  },
+  "language": {
+    "label": "Langue",
+    "fr": "FR",
+    "en": "EN"
+  }
+}

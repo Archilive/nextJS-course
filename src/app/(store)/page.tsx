@@ -3,30 +3,32 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { formatPrice } from "@/features/catalog/format";
 import { getProducts } from "@/features/catalog/queries";
+import { getDictionary, getRequestLocale } from "@/features/i18n/server";
 import { SponsoredProducts } from "@/features/sponsored/sponsored-products";
 
 export default async function HomePage() {
   const products = await getProducts();
+  const locale = await getRequestLocale();
+  const dictionary = getDictionary(locale);
 
   return (
     <div className="page-shell">
       <section className="hero">
         <div>
-          <p className="eyebrow">Atelier e-commerce simple</p>
-          <h1>Des produits utiles pour des journées efficaces.</h1>
-          <p>
-            Un petit catalogue rendu avec des Server Components et des données
-            locales de test.
-          </p>
+          <p className="eyebrow">{dictionary.home.eyebrow}</p>
+          <h1>{dictionary.home.title}</h1>
+          <p>{dictionary.home.description}</p>
         </div>
       </section>
 
       <section className="section-heading" aria-labelledby="products-title">
         <div>
-          <p className="eyebrow">Catalogue</p>
-          <h2 id="products-title">Produits</h2>
+          <p className="eyebrow">{dictionary.home.catalog}</p>
+          <h2 id="products-title">{dictionary.home.products}</h2>
         </div>
-        <span>{products.length} produits</span>
+        <span>
+          {products.length} {dictionary.home.productsCount}
+        </span>
       </section>
 
       <section className="product-grid">

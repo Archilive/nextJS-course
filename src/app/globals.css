@@ -130,6 +130,31 @@ img {
   gap: 8px;
 }
 
+.language-switcher {
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+}
+
+.language-switcher button {
+  min-width: 38px;
+  min-height: 36px;
+  border: 0;
+  padding: 0 10px;
+  color: var(--muted);
+  background: transparent;
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.language-switcher button[aria-pressed="true"] {
+  color: #ffffff;
+  background: var(--accent-strong);
+}
+
 .secondary-link {
   min-height: 38px;
   display: inline-flex;
