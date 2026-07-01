@@ -9,12 +9,17 @@ type LanguageSwitcherProps = {
     fr: string;
     en: string;
   };
+  reloadPage?: () => void;
 };
 
-export function LanguageSwitcher({ locale, labels }: LanguageSwitcherProps) {
+export function LanguageSwitcher({
+  locale,
+  labels,
+  reloadPage = () => window.location.reload(),
+}: LanguageSwitcherProps) {
   function setLocale(nextLocale: Locale) {
     document.cookie = `NEXT_LOCALE=${nextLocale}; path=/; max-age=31536000; samesite=lax`;
-    window.location.reload();
+    reloadPage();
   }
 
   return (
