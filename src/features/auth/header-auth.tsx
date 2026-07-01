@@ -11,6 +11,7 @@ export async function HeaderAuth() {
       <nav className="main-nav" aria-label="Navigation principale">
         <Link href="/">Produits</Link>
         <Link href="/performance">Performance</Link>
+        <Link href="/production">Production</Link>
         <Link href="/compte">Compte</Link>
         {session?.user.role === "ADMIN" ? (
           <Link href="/admin/products">Admin</Link>

@@ -33,16 +33,40 @@ export async function generateMetadata({
 }: ProductPageProps): Promise<Metadata> {
   const { slug } = await params;
   const product = await getProductBySlug(slug);
+  const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "Ma Supa Boutique";
 
   if (!product) {
     return {
       title: "Produit introuvable",
+      robots: {
+        index: false,
+        follow: false,
+      },
     };
   }
 
   return {
-    title: `${product.name} - Ma Supa Boutique`,
+    title: product.name,
     description: product.description,
+    keywords: [product.name, product.category, "produit", "boutique"],
+    robots: {
+      index: true,
+      follow: true,
+    },
+    openGraph: {
+      title: `${product.name} | ${siteName}`,
+      description: product.description,
+      siteName,
+      type: "website",
+      images: [
+        {
+          url: product.image,
+          width: 760,
+          height: 620,
+          alt: product.name,
+        },
+      ],
+    },
   };
 }
 

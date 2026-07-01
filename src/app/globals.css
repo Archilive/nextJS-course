@@ -536,6 +536,10 @@ img {
   font-size: clamp(2rem, 5vw, 3.4rem);
 }
 
+.metric-card h2 {
+  margin-top: 6px;
+}
+
 .metric-list {
   display: grid;
   gap: 12px;
@@ -558,6 +562,23 @@ img {
 
 .metric-list dd {
   font-weight: 800;
+}
+
+.diagnostic-section {
+  display: grid;
+  gap: 18px;
+  margin-top: 42px;
+}
+
+.diagnostic-section h2 {
+  margin-top: 4px;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+}
+
+.debug-panel {
+  display: grid;
+  gap: 12px;
+  justify-items: start;
 }
 
 .skeleton-block {

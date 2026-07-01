@@ -13,7 +13,7 @@ export default function StoreLayout({
     <>
       <header className="site-header">
         <Link className="brand" href="/">
-          Ma Supa Boutique
+          {process.env.NEXT_PUBLIC_SITE_NAME ?? "Ma Supa Boutique"}
         </Link>
         <Suspense fallback={<HeaderAuthFallback />}>
           <HeaderAuth />
@@ -34,6 +34,7 @@ function HeaderAuthFallback() {
       <nav className="main-nav" aria-label="Navigation principale">
         <Link href="/">Produits</Link>
         <Link href="/performance">Performance</Link>
+        <Link href="/production">Production</Link>
         <Link href="/compte">Compte</Link>
       </nav>
       <div className="auth-controls">
@@ -61,7 +62,7 @@ async function StoreFooter() {
 
   return (
     <footer className="site-footer">
-      <span>Atelier Next.js - App Router, RSC et groupes de routes.</span>
+      <span>Atelier Next.js - production, SEO et observabilité.</span>
     </footer>
   );
 }

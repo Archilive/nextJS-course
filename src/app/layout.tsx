@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { WebVitals } from "@/features/observability/web-vitals";
 import "./globals.css";
 
 const dancingScript = localFont({
@@ -19,9 +20,28 @@ const dancingScript = localFont({
   display: "swap",
 });
 
+const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "Ma Supa Boutique";
+const siteDescription = "Un atelier e-commerce simple construit avec Next.js.";
+
 export const metadata: Metadata = {
-  title: "Ma Supa Boutique",
-  description: "Un atelier e-commerce simple construit avec Next.js.",
+  metadataBase: new URL("http://localhost:3000"),
+  title: {
+    default: siteName,
+    template: `%s | ${siteName}`,
+  },
+  description: siteDescription,
+  keywords: ["Next.js", "e-commerce", "boutique", "atelier"],
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    title: siteName,
+    description: siteDescription,
+    locale: "fr_FR",
+    siteName,
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -31,7 +51,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className={dancingScript.variable}>
-      <body>{children}</body>
+      <body>
+        <WebVitals />
+        {children}
+      </body>
     </html>
   );
 }
