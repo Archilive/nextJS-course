@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { WebVitals } from "@/features/observability/web-vitals";
+import { ServiceWorkerRegistration } from "@/features/pwa/service-worker-registration";
 import "./globals.css";
 
 const dancingScript = localFont({
@@ -31,6 +32,7 @@ export const metadata: Metadata = {
   },
   description: siteDescription,
   keywords: ["Next.js", "e-commerce", "boutique", "atelier"],
+  manifest: "/manifest.webmanifest",
   robots: {
     index: true,
     follow: true,
@@ -41,6 +43,18 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     siteName,
     type: "website",
+  },
+  icons: {
+    icon: [
+      { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icons/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180" }],
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: siteName,
   },
 };
 
@@ -53,6 +67,7 @@ export default function RootLayout({
     <html lang="fr" className={dancingScript.variable}>
       <body>
         <WebVitals />
+        <ServiceWorkerRegistration />
         {children}
       </body>
     </html>
